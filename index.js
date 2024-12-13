@@ -1,13 +1,15 @@
 const express = require('express');
 const api = require('./routes/api');
 const sequelize = require('./models/connectionBDD');
+const authenticateJWT = require('./middleware/authenticateJWT');
 
 const app = express();
 const port = 3001;
 
 app.use(express.json());
 
-app.use('/api', api);
+app.use('/api', authenticateJWT, api);
+//app.use('/api', api);
 
 sequelize.sync().then(() => {
     console.log('✅ Base de données synchronisée');
