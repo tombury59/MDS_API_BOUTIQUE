@@ -36,7 +36,7 @@ const updateMessage = async (req, res) => {
             messages.update(req.body);
             res.json(messages);
         } else {
-            res.status(404).send({ message: 'Commentaire non trouvé' });
+            res.status(404).send({ message: 'Message non trouvé' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -48,9 +48,9 @@ const deleteMessage = async (req, res) => {
         const messages = await Message.findByPk(req.params.id);
         if (messages) {
             messages.destroy();
-            res.json({ message: 'Commentaire supprimé' });
+            res.json({ message: 'Message supprimé' });
         } else {
-            res.status(404).send({ message: 'Commentaire non trouvé' });
+            res.status(404).send({ message: 'Message non trouvé' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });

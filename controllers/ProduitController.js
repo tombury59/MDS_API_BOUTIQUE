@@ -35,7 +35,7 @@ const updateProduit = async (req, res) => {
             await produit.update(req.body);
             res.json(produit);
         } else {
-            res.status(404).send({ message: 'Produit not found' });
+            res.status(404).send({ message: 'Product not found' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -47,9 +47,9 @@ const deleteProduit = async (req, res) => {
         const produit = await Produit.findByPk(req.params.id);
         if (produit) {
             await produit.destroy();
-            res.json({ message: 'Produit deleted' });
+            res.json({ message: 'Product deleted' });
         } else {
-            res.status(404).send({ message: 'Produit not found' });
+            res.status(404).send({ message: 'Product not found' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });

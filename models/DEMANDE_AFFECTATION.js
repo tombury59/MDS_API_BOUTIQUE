@@ -17,7 +17,7 @@ const DemandeAffectation = sequelize.define('DemandeAffectation', {
     },
     dateTraitement: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     idResponsable: {
         type: DataTypes.INTEGER,

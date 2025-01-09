@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('./connectionBDD');
 
-const Adresse = sequelize.define('Adresse', {
+const Commande = sequelize.define('Commande', {
     idCommande: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -15,7 +15,7 @@ const Adresse = sequelize.define('Adresse', {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    status: {
+    statut: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -36,8 +36,8 @@ const Adresse = sequelize.define('Adresse', {
         allowNull: false
     }
 }, {
-    tableName: 'ADRESSE',
+    tableName: 'COMMANDE',
     timestamps: false,
 });
 
-module.exports = Adresse;
+module.exports = Commande;

@@ -5,17 +5,20 @@ const TypeUtilisateurController = require('../controllers/TypeUtilisateurControl
 const UtilisateurController = require('../controllers/UtilisateurController');
 const CommentaireController = require('../controllers/CommentaireController');
 const MessageController = require('../controllers/MessageController');
+const DemAffectationController = require('../controllers/DemAffectController');
+const CommandeController = require('../controllers/CommandeController');
+const LivraisonController = require('../controllers/LivraisonController');
 
 const authenticateJWT = require('../middleware/authenticateJWT');
 
 const router = express.Router();
 
 
-router.get('/produits', authenticateJWT,ProduitController.getProduits);
-router.get('/produits/:id', authenticateJWT, ProduitController.getProduitById);
+router.get('/products', authenticateJWT,ProduitController.getProduits);
+router.get('/products/:id', authenticateJWT, ProduitController.getProduitById);
 router.post('/produits', authenticateJWT, ProduitController.createProduit);
-router.put('/produits/:id', authenticateJWT, ProduitController.updateProduit);
-router.delete('/produits/:id', authenticateJWT, ProduitController.deleteProduit);
+router.put('/products/:id', authenticateJWT, ProduitController.updateProduit);
+router.delete('/products/:id', authenticateJWT, ProduitController.deleteProduit);
 
 
 router.get('/users', authenticateJWT, UtilisateurController.getUsers);
@@ -26,17 +29,35 @@ router.put('/users/:id', authenticateJWT, UtilisateurController.updateUser);
 router.delete('/users/:id', authenticateJWT, UtilisateurController.deleteUser);
 
 
-router.get('/commentaires', authenticateJWT, CommentaireController.getCommentaires);
-router.get('/commentaires/:id', authenticateJWT, CommentaireController.getCommentaireById);
-router.post('/commentaires', authenticateJWT, CommentaireController.createCommentaire);
-router.put('/commentaires/:id', authenticateJWT, CommentaireController.updateCommentaire);
-router.delete('/commentaires/:id', authenticateJWT, CommentaireController.deleteCommentaire);
+router.get('/products/:productId/comments', authenticateJWT, CommentaireController.getCommentaires);
+router.get('/products/:productId/comments/:commentId', authenticateJWT, CommentaireController.getCommentaireById);
+router.post('/products/:productId/comments', authenticateJWT, CommentaireController.createCommentaire);
+router.put('/products/:productId/comments/:commentId', authenticateJWT, CommentaireController.updateCommentaire);
+router.delete('/products/:productId/comments/:commentId', authenticateJWT, CommentaireController.deleteCommentaire);
 
 router.get('/messages', authenticateJWT, MessageController.getMessages);
 router.get('/messages/:id', authenticateJWT, MessageController.getMessageById);
 router.post('/messages', authenticateJWT, MessageController.createMessage);
 router.put('/messages/:id', authenticateJWT, MessageController.updateMessage);
 router.delete('/messages/:id', authenticateJWT, MessageController.deleteMessage);
+
+router.get('/assignment-requests', authenticateJWT, DemAffectationController.getDemandeAffects);
+router.get('/assignment-requests/:id', authenticateJWT, DemAffectationController.getDemandeAffectById);
+router.post('/assignment-requests', authenticateJWT, DemAffectationController.createDemandeAffect);
+router.put('/assignment-requests/:id', authenticateJWT, DemAffectationController.updateDemandeAffect);
+router.delete('/assignment-requests/:id', authenticateJWT, DemAffectationController.deleteDemandeAffect);
+
+router.get('/orders', authenticateJWT, CommandeController.getCommandes);
+router.get('/orders/:id', authenticateJWT, CommandeController.getCommandeById);
+router.post('/orders', authenticateJWT, CommandeController.createCommande);
+router.put('/orders/:id', authenticateJWT, CommandeController.updateCommande);
+router.delete('/orders/:id', authenticateJWT, CommandeController.deleteCommande);
+
+router.get('/delivery-tours', authenticateJWT, LivraisonController.getLivraisons);
+router.get('/delivery-tours/:id', authenticateJWT, LivraisonController.getLivraisonById);
+router.post('/delivery-tours', authenticateJWT, LivraisonController.createLivraison);
+router.put('/delivery-tours/:id', authenticateJWT, LivraisonController.updateLivraison);
+router.delete('/delivery-tours/:id', authenticateJWT, LivraisonController.deleteLivraison);
 
 
 
