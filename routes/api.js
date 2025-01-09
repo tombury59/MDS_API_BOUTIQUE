@@ -20,6 +20,7 @@ router.put('/users/:id', authenticateJWT, UtilisateurController.updateUser);
 router.delete('/users/:id', authenticateJWT, UtilisateurController.deleteUser);
 
 
+
 router.get('/typeUsers', authenticateJWT, TypeUtilisateurController.getTypeUtilisateur);
 
 
