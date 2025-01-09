@@ -69,4 +69,18 @@ const updateUser = async (req, res) => {
     }
 }
 
-module.exports = { login,getUsers,getUserById,getUserByType,createUser,updateUser };
+const deleteUser = async (req, res) => {
+    try {
+        const user = await Utilisateur.findByPk(req.params.id);
+        if (user) {
+            await user.destroy();
+            res.json({ message: 'User deleted' });
+        } else {
+            res.status(404).send({ message: 'User not found' });
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message });
+    }
+}
+
+module.exports = { login,getUsers,getUserById,getUserByType,createUser,updateUser,deleteUser };

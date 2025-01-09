@@ -17,6 +17,7 @@ router.get('/users/:id', authenticateJWT, UtilisateurController.getUserById);
 router.get('/users/role/:id', authenticateJWT, UtilisateurController.getUserByType);
 router.post('/users', authenticateJWT, UtilisateurController.createUser);
 router.put('/users/:id', authenticateJWT, UtilisateurController.updateUser);
+router.delete('/users/:id', authenticateJWT, UtilisateurController.deleteUser);
 
 
 router.get('/typeUsers', authenticateJWT, TypeUtilisateurController.getTypeUtilisateur);
