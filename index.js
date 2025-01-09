@@ -8,8 +8,7 @@ const port = 3001;
 
 app.use(express.json());
 
-app.use('/api', authenticateJWT, api);
-//app.use('/api', api);
+app.use('/api', api);
 
 sequelize.sync().then(() => {
     console.log('✅ Base de données synchronisée');

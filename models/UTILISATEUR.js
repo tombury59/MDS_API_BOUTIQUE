@@ -7,24 +7,24 @@ const Utilisateur = sequelize.define('Utilisateur', {
         primaryKey: true,
         autoIncrement: true
     },
-    nom: {
+    nomUtilisateur: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    prenom: {
+    prenomUtilisateur: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    email: {
+    emailUtilisateur: {
         type: DataTypes.STRING,
         unique: true,
         allowNull: false
     },
-    motDePasse: {
+    mdpUtilisateur: {
         type: DataTypes.STRING,
         allowNull: false
     },
-    role: {
+    idType: {
         type: DataTypes.STRING,
         allowNull: false
     }

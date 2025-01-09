@@ -6,7 +6,8 @@ const sequelize = new Sequelize('ProjetSQlserver', 'UserDatabase', '1234', {
     port: 1433,
     dialectOptions: {
         encrypt: true,
-        trustServerCertificate: true
+        trustServerCertificate: true,
+        requestTimeout: 30000
     }
 });
 
