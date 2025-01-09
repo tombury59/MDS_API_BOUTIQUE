@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 
-const sequelize = new Sequelize('ProjetSQlserver', 'UserDatabase', '1234', {
+const sequelize = new Sequelize('ProjetSQlserver3', 'UserDatabase', '1234', {
     host: 'localhost',
     dialect: 'mssql',
     port: 1433,
