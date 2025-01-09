@@ -7,6 +7,10 @@ const Produit = sequelize.define('Produit', {
         primaryKey: true,
         autoIncrement: true
     },
+    refProduit: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     nomProduit: {
         type: DataTypes.STRING,
         allowNull: false
@@ -22,6 +26,11 @@ const Produit = sequelize.define('Produit', {
     isActif: {
         type: DataTypes.BOOLEAN,
         allowNull: false
+    },
+    dateCreation: {
+        type: DataTypes.STRING,
+        allowNull: false
+
     }
 }, {
     tableName: 'PRODUIT',

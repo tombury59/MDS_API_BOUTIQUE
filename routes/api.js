@@ -4,6 +4,7 @@ const ProduitController = require('../controllers/ProduitController');
 const TypeUtilisateurController = require('../controllers/TypeUtilisateurController');
 const UtilisateurController = require('../controllers/UtilisateurController');
 const CommentaireController = require('../controllers/CommentaireController');
+const MessageController = require('../controllers/MessageController');
 
 const authenticateJWT = require('../middleware/authenticateJWT');
 
@@ -11,10 +12,10 @@ const router = express.Router();
 
 
 router.get('/produits', authenticateJWT,ProduitController.getProduits);
-router.get('/produit/:id', authenticateJWT, ProduitController.getProduitById);
-router.post('/produit', authenticateJWT, ProduitController.createProduit);
-router.put('/produit/:id', authenticateJWT, ProduitController.updateProduit);
-router.delete('/produit/:id', authenticateJWT, ProduitController.deleteProduit);
+router.get('/produits/:id', authenticateJWT, ProduitController.getProduitById);
+router.post('/produits', authenticateJWT, ProduitController.createProduit);
+router.put('/produits/:id', authenticateJWT, ProduitController.updateProduit);
+router.delete('/produits/:id', authenticateJWT, ProduitController.deleteProduit);
 
 
 router.get('/users', authenticateJWT, UtilisateurController.getUsers);
@@ -30,6 +31,12 @@ router.get('/commentaires/:id', authenticateJWT, CommentaireController.getCommen
 router.post('/commentaires', authenticateJWT, CommentaireController.createCommentaire);
 router.put('/commentaires/:id', authenticateJWT, CommentaireController.updateCommentaire);
 router.delete('/commentaires/:id', authenticateJWT, CommentaireController.deleteCommentaire);
+
+router.get('/messages', authenticateJWT, MessageController.getMessages);
+router.get('/messages/:id', authenticateJWT, MessageController.getMessageById);
+router.post('/messages', authenticateJWT, MessageController.createMessage);
+router.put('/messages/:id', authenticateJWT, MessageController.updateMessage);
+router.delete('/messages/:id', authenticateJWT, MessageController.deleteMessage);
 
 
 
