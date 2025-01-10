@@ -1,9 +1,10 @@
 const { Sequelize } = require('sequelize');
+require("dotenv").config();
 
-const sequelize = new Sequelize('ProjetSQlserver3', 'UserDatabase', '1234', {
+const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
     host: 'localhost',
-    dialect: 'mssql',
-    port: 1433,
+    dialect: process.env.DB_DIALECT,
+    port:process.env.DB_PORT,
     dialectOptions: {
         encrypt: true,
         trustServerCertificate: true,

@@ -14,7 +14,7 @@ const sequelize = require('./models/connectionBDD');
 const authenticateJWT = require('./middleware/authenticateJWT');
 
 const app = express();
-const port = 3001;
+const port = 3002;
 
 app.use(express.json());
 
