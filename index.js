@@ -1,10 +1,11 @@
 const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
 
 // Les différents routeurs associés aux CRUDS
 const api = require('./routes/api');
 const products = require('./routes/products');
 const users = require('./routes/users');
-//const comments = require('./routes/comments');
 const messages = require('./routes/messages');
 const assignmentRequests = require('./routes/assignmentRequests');
 const orders = require('./routes/orders');
@@ -21,15 +22,38 @@ app.use(express.json());
 app.use('/api', api);
 app.use('/products', products);
 app.use('/users', users);
-//app.use('/comments', comments);
 app.use('/messages', messages);
 app.use('/assignment-requests', assignmentRequests);
 app.use('/orders', orders);
 app.use('/delivery-tours', deliveryTours);
 
+
+const path = require('path');
+
+app.get('/test-socket', (req, res) => {
+    res.sendFile(path.join(__dirname, 'socketIo.html'));
+});
+
+const server = http.createServer(app);
+const io = new Server(server);
+
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
+
+    // Add your custom event handlers here
+    socket.on('message', (msg) => {
+        console.log('Message received: ' + msg);
+        io.emit('message', msg); // Broadcast the message to all connected clients
+    });
+});
+
 sequelize.sync().then(() => {
     console.log('✅ Base de données synchronisée');
-    app.listen(port, () => {
+    server.listen(port, () => {
         console.log(`Serveur en écoute sur http://localhost:${port}`);
     });
 }).catch(err => {
