@@ -9,9 +9,9 @@ services:
       - sqlserver
     environment:
       - DB_HOST=sqlserver
-      - DB_USER=sa
-      - DB_PASSWORD=yourStrongPassword!
-      - DB_NAME=YourDatabase
+      - DB_USER=UserDatabase
+      - DB_PASSWORD=1234
+      - DB_NAME=ProjetSQlserver3
 
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
