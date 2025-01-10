@@ -5,6 +5,7 @@ const secretKey = 'test';
 
 const login = async (req, res) => {
     const { email, password } = req.body;
+    console.log(email, password);
     try {
         const utilisateur = await Utilisateur.findOne({ where: { emailUtilisateur: email, mdpUtilisateur: password } });
         if (utilisateur) {

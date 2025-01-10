@@ -1,20 +1,42 @@
 const express = require('express');
 
-const ProduitController = require('../controllers/ProduitController');
+
 const TypeUtilisateurController = require('../controllers/TypeUtilisateurController');
 const UtilisateurController = require('../controllers/UtilisateurController');
-const CommentaireController = require('../controllers/CommentaireController');
-const MessageController = require('../controllers/MessageController');
-const DemAffectationController = require('../controllers/DemAffectController');
-const CommandeController = require('../controllers/CommandeController');
-const LivraisonController = require('../controllers/LivraisonController');
+
 
 const authenticateJWT = require('../middleware/authenticateJWT');
-
 const router = express.Router();
 
 router.get('/typeUsers', authenticateJWT, TypeUtilisateurController.getTypeUtilisateur);
 
+/**
+ * @swagger
+ * /api/login:
+ *  post:
+ *    tags:
+ *      - Utilisateur
+ *    description: Use to log in a user
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              email:
+ *                type: string
+ *                description: Email of the user
+ *              password:
+ *                type: string
+ *                description: Password of the user
+ *            required:
+ *              - email
+ *              - password
+ *    responses:
+ *      200:
+ *        description: A successful response
+ */
 router.post('/login', UtilisateurController.login);
 
 

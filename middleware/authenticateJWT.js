@@ -3,6 +3,7 @@ const secretKey = 'test';
 
 const authenticateJWT = (req, res, next) => {
     //const token = req.header('Authorization');
+    //console.log(token);
 
     const token = req.header('Authorization').split(' ')[1];
 
