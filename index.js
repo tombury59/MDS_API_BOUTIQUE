@@ -38,16 +38,12 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 io.on('connection', (socket) => {
-    console.log('A user connected');
-
-    socket.on('disconnect', () => {
-        console.log('User disconnected');
-    });
-
-    // Add your custom event handlers here
-    socket.on('message', (msg) => {
-        console.log('Message received: ' + msg);
-        io.emit('message', msg); // Broadcast the message to all connected clients
+    socket.on('message', (data) => {
+        console.log('Message reçu :', data.message);
+        io.emit('message', {
+            message: data.message,
+            senderId: data.senderId
+        });
     });
 });
 
