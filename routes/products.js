@@ -140,7 +140,7 @@ router.delete('/:id', authenticateJWT, ProduitController.deleteProduit);
  * /products/{productId}/comments:
  *  get:
  *    tags:
- *      - Products
+ *      - Comments
  *    description: Use to request all comments for a product
  *    parameters:
  *      - name: productId
@@ -159,7 +159,7 @@ router.get('/:productId/comments', authenticateJWT, CommentaireController.getCom
  * /products/{productId}/comments/{commentId}:
  *  get:
  *    tags:
- *      - Products
+ *      - Comments
  *    description: Use to request a comment by id for a product
  *    parameters:
  *      - name: productId
@@ -183,12 +183,18 @@ router.get('/:productId/comments/:commentId', authenticateJWT, CommentaireContro
  * /products/{productId}/comments:
  *  post:
  *    tags:
- *      - Products
- *    description: Use to create a comment
+ *      - Comments
+ *    description: Use to create a comment for a product
  *    parameters:
  *      - name: productId
  *        in: path
  *        description: ID of the product
+ *        required: true
+ *        schema:
+ *          type: integer
+ *      - name: commentId
+ *        in: path
+ *        description: ID of the comment
  *        required: true
  *        schema:
  *          type: integer
@@ -201,21 +207,58 @@ router.get('/:productId/comments/:commentId', authenticateJWT, CommentaireContro
  *            properties:
  *              noteCommentaire:
  *                type: integer
+ *                description: Rating of the comment
  *              contenuCommentaire:
  *                type: string
+ *                description: Content of the comment
  *              isVisible:
  *                type: boolean
+ *                description: Visibility of the comment
  *              dateCreation:
  *                type: string
+ *                description: Creation date of the comment
  *              idUtilisateur:
  *                type: integer
+ *                description: ID of the user
  *              idProduit:
  *                type: string
+ *                description: ID of the product
+ *          example:
+ *            noteCommentaire: 4
+ *            contenuCommentaire: "Updated comment content"
+ *            isVisible: true
+ *            dateCreation: "2025-01-10 10:00:00.000"
+ *            idUtilisateur: 1
+ *            idProduit: "QUI986"
  *    security:
  *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                noteCommentaire:
+ *                  type: integer
+ *                contenuCommentaire:
+ *                  type: string
+ *                isVisible:
+ *                  type: boolean
+ *                dateCreation:
+ *                  type: string
+ *                idUtilisateur:
+ *                  type: integer
+ *                idProduit:
+ *                  type: string
+ *            example:
+ *              noteCommentaire: 4
+ *              contenuCommentaire: "Updated comment content"
+ *              isVisible: true
+ *              dateCreation: "2025-01-10 10:00:00.000"
+ *              idUtilisateur: 1
+ *              idProduit: "10"
  */
 router.post('/:productId/comments', authenticateJWT, CommentaireController.createCommentaire);
 
@@ -224,19 +267,21 @@ router.post('/:productId/comments', authenticateJWT, CommentaireController.creat
  * /products/{productId}/comments/{commentId}:
  *  put:
  *    tags:
- *      - Products
+ *      - Comments
  *    description: Use to update a comment
  *    parameters:
  *      - name: productId
  *        in: path
  *        description: ID of the product
  *        required: true
- *        type: integer
+ *        schema:
+ *          type: integer
  *      - name: commentId
  *        in: path
  *        description: ID of the comment
  *        required: true
- *        type: integer
+ *        schema:
+ *          type: integer
  *    requestBody:
  *      required: true
  *      content:
@@ -246,21 +291,58 @@ router.post('/:productId/comments', authenticateJWT, CommentaireController.creat
  *            properties:
  *              noteCommentaire:
  *                type: integer
+ *                description: Rating of the comment
  *              contenuCommentaire:
  *                type: string
+ *                description: Content of the comment
  *              isVisible:
  *                type: boolean
+ *                description: Visibility of the comment
  *              dateCreation:
  *                type: string
+ *                description: Creation date of the comment
  *              idUtilisateur:
  *                type: integer
+ *                description: ID of the user
  *              idProduit:
  *                type: string
+ *                description: ID of the product
+ *          example:
+ *            noteCommentaire: 4
+ *            contenuCommentaire: "Updated comment content"
+ *            isVisible: true
+ *            dateCreation: "2025-01-10 10:00:00.000"
+ *            idUtilisateur: 1
+ *            idProduit: "QUI986"
  *    security:
  *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
+ *        content:
+ *          application/json:
+ *            schema:
+ *              type: object
+ *              properties:
+ *                noteCommentaire:
+ *                  type: integer
+ *                contenuCommentaire:
+ *                  type: string
+ *                isVisible:
+ *                  type: boolean
+ *                dateCreation:
+ *                  type: string
+ *                idUtilisateur:
+ *                  type: integer
+ *                idProduit:
+ *                  type: string
+ *            example:
+ *              noteCommentaire: 4
+ *              contenuCommentaire: "Updated comment content"
+ *              isVisible: true
+ *              dateCreation: "2025-01-10 10:00:00.000"
+ *              idUtilisateur: 1
+ *              idProduit: "10"
  */
 router.put('/:productId/comments/:commentId', authenticateJWT, CommentaireController.updateCommentaire);
 
@@ -269,7 +351,7 @@ router.put('/:productId/comments/:commentId', authenticateJWT, CommentaireContro
  * /products/{productId}/comments/{commentId}:
  *  delete:
  *    tags:
- *      - Products
+ *      - Comments
  *    description: Use to delete a comment for a product
  *    parameters:
  *      - name: productId

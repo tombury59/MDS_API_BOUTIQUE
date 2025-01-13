@@ -40,7 +40,7 @@ router.get('/:id', authenticateJWT, CommandeController.getCommandeById);
 
 /**
  * @swagger
- * /users:
+ * /orders:
  *  post:
  *    tags:
  *      - Orders
@@ -78,7 +78,7 @@ router.post('/', authenticateJWT, CommandeController.createCommande);
 
 /**
  * @swagger
- * /users/{id}:
+ * /orders/{id}:
  *  put:
  *    tags:
  *      - Orders
