@@ -65,6 +65,39 @@ router.get('/role/:id', authenticateJWT, UtilisateurController.getUserByType);
  *    tags:
  *      - Users
  *    description: Use to create a user
+ *    parameters:
+ *      - name: id
+ *        in: path
+ *        description: ID of the assignment request
+ *        required: true
+ *        type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              emailUtilisateur:
+ *                type: string
+ *              nomUtilisateur:
+ *                type: string
+ *              mdpUtilisateur:
+ *                type: string
+ *              prenomUtilisateur:
+ *                type: string
+ *              telUtilisateur:
+ *                type: integer
+ *              isActif:
+ *                type: boolean
+ *              dateCreation:
+ *                  type: string
+ *              idResponsable:
+ *                  type: integer
+ *              idType:
+ *                  type: integer
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
@@ -81,9 +114,36 @@ router.post('', authenticateJWT, UtilisateurController.createUser);
  *    parameters:
  *      - name: id
  *        in: path
- *        description: ID of the user
+ *        description: ID of the assignment request
  *        required: true
  *        type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              emailUtilisateur:
+ *                type: string
+ *              nomUtilisateur:
+ *                type: string
+ *              mdpUtilisateur:
+ *                type: string
+ *              prenomUtilisateur:
+ *                type: string
+ *              telUtilisateur:
+ *                type: integer
+ *              isActif:
+ *                type: boolean
+ *              dateCreation:
+ *                  type: string
+ *              idResponsable:
+ *                  type: integer
+ *              idType:
+ *                  type: integer
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response

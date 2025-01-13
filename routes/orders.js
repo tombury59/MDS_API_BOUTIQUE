@@ -40,11 +40,36 @@ router.get('/:id', authenticateJWT, CommandeController.getCommandeById);
 
 /**
  * @swagger
- * /orders:
+ * /users:
  *  post:
  *    tags:
  *      - Orders
  *    description: Use to create an order
+ *    parameters:
+ *      - name: id
+ *        in: path
+ *        description: ID of the assignment request
+ *        required: true
+ *        type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              montantTotalHT:
+ *                type: integer
+ *              montantTotalTTC:
+ *                type: integer
+ *              statut:
+ *                type: string
+ *              dateCommande:
+ *                type: string
+ *              idUtilisateur:
+ *                type: integer
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
@@ -53,7 +78,7 @@ router.post('/', authenticateJWT, CommandeController.createCommande);
 
 /**
  * @swagger
- * /orders/{id}:
+ * /users/{id}:
  *  put:
  *    tags:
  *      - Orders
@@ -61,9 +86,28 @@ router.post('/', authenticateJWT, CommandeController.createCommande);
  *    parameters:
  *      - name: id
  *        in: path
- *        description: ID of the order
+ *        description: ID of the assignment request
  *        required: true
  *        type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              montantTotalHT:
+ *                type: integer
+ *              montantTotalTTC:
+ *                type: integer
+ *              statut:
+ *                type: string
+ *              dateCommande:
+ *                type: string
+ *              idUtilisateur:
+ *                type: integer
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response

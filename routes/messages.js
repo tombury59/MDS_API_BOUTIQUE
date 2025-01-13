@@ -45,6 +45,33 @@ router.get('/:id', authenticateJWT, MessageController.getMessageById);
  *    tags:
  *      - Messages
  *    description: Use to create a message
+ *    parameters:
+ *      - name: id
+ *        in: path
+ *        description: ID of the assignment request
+ *        required: true
+ *        type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              sujetMessage:
+ *                type: string
+ *              contenuMessage:
+ *                type: string
+ *              estLu:
+ *                type: boolean
+ *              dateEnvoiMessage:
+ *                type: string
+ *              idRecevoir:
+ *                type: integer
+ *              idEnvoyeur:
+ *                type: integer
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
@@ -61,9 +88,30 @@ router.post('/', authenticateJWT, MessageController.createMessage);
  *    parameters:
  *      - name: id
  *        in: path
- *        description: ID of the message
+ *        description: ID of the assignment request
  *        required: true
  *        type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              sujetMessage:
+ *                type: string
+ *              contenuMessage:
+ *                type: string
+ *              estLu:
+ *                type: boolean
+ *              dateEnvoiMessage:
+ *                type: string
+ *              idRecevoir:
+ *                type: integer
+ *              idEnvoyeur:
+ *                type: integer
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response

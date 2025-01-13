@@ -45,6 +45,31 @@ router.get('/:id', authenticateJWT, LivraisonController.getLivraisonById);
  *    tags:
  *      - Delivery Tours
  *    description: Use to create a delivery tour
+ *    parameters:
+ *      - name: id
+ *        in: path
+ *        description: ID of the assignment request
+ *        required: true
+ *        type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              statutLivraison:
+ *                type: string
+ *              datePrevu:
+ *                type: string
+ *              dateLivraison:
+ *                type: integer
+ *              IdLivreur:
+ *                type: integer
+ *              idCommande::
+ *                type: integer
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
@@ -61,9 +86,28 @@ router.post('/', authenticateJWT, LivraisonController.createLivraison);
  *    parameters:
  *      - name: id
  *        in: path
- *        description: ID of the delivery tour
+ *        description: ID of the assignment request
  *        required: true
  *        type: integer
+ *    requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *          schema:
+ *            type: object
+ *            properties:
+ *              statutLivraison:
+ *                type: string
+ *              datePrevu:
+ *                type: string
+ *              dateLivraison:
+ *                type: integer
+ *              IdLivreur:
+ *                type: integer
+ *              idCommande::
+ *                type: integer
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
