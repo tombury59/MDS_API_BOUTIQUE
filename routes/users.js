@@ -65,12 +65,6 @@ router.get('/role/:id', authenticateJWT, UtilisateurController.getUserByType);
  *    tags:
  *      - Users
  *    description: Use to create a user
- *    parameters:
- *      - name: id
- *        in: path
- *        description: ID of the assignment request
- *        required: true
- *        type: integer
  *    requestBody:
  *      required: true
  *      content:
@@ -87,15 +81,25 @@ router.get('/role/:id', authenticateJWT, UtilisateurController.getUserByType);
  *              prenomUtilisateur:
  *                type: string
  *              telUtilisateur:
- *                type: integer
+ *                type: string
  *              isActif:
  *                type: boolean
  *              dateCreation:
- *                  type: string
+ *                type: string
  *              idResponsable:
- *                  type: integer
+ *                type: integer
  *              idType:
- *                  type: integer
+ *                type: integer
+ *          example:
+ *            emailUtilisateur: "tombury59@hotmail.com"
+ *            nomUtilisateur: "Bury"
+ *            mdpUtilisateur: "1234"
+ *            prenomUtilisateur: "Tom"
+ *            telUtilisateur: "0642107741"
+ *            isActif: true
+ *            dateCreation: "2025-01-09 14:35:36.730"
+ *            idResponsable: 10
+ *            idType: 12
  *    security:
  *      - bearerAuth: []
  *    responses:
@@ -133,7 +137,7 @@ router.post('', authenticateJWT, UtilisateurController.createUser);
  *              prenomUtilisateur:
  *                type: string
  *              telUtilisateur:
- *                type: integer
+ *                type: string
  *              isActif:
  *                type: boolean
  *              dateCreation:

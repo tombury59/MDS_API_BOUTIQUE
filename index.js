@@ -61,10 +61,10 @@ const swaggerOptions = {
 };
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const path = require('path');
-app.get('/test-socket', (req, res) => {
+app.get('/socket', (req, res) => {
     res.sendFile(path.join(__dirname, 'socketIo.html'));
 });
 
