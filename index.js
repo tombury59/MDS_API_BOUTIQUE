@@ -4,29 +4,31 @@ const { Server } = require('socket.io');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
 
-const api = require('./routes/api');
-const products = require('./routes/products');
-const users = require('./routes/users');
-const messages = require('./routes/messages');
-const assignmentRequests = require('./routes/assignmentRequests');
-const orders = require('./routes/orders');
-const deliveryTours = require('./routes/deliveryTours');
+const api = require('./src/routes/api');
+const products = require('./src/routes/products');
+const users = require('./src/routes/users');
+const messages = require('./src/routes/messages');
+const assignmentRequests = require('./src/routes/assignmentRequests');
+const orders = require('./src/routes/orders');
+const deliveryTours = require('./src/routes/deliveryTours');
+//const roles = require('./src/routes/userRoles');
 
-const sequelize = require('./models/connectionBDD');
-const authenticateJWT = require('./middleware/authenticateJWT');
+const sequelize = require('./src/models/connectionBDD');
+const authenticateJWT = require('./src/middleware/authenticateJWT');
 
 const app = express();
 const port = 3001;
 
 app.use(express.json());
 
-app.use('/api', api);
-app.use('/products', products);
-app.use('/users', users);
-app.use('/messages', messages);
-app.use('/assignment-requests', assignmentRequests);
-app.use('/orders', orders);
-app.use('/delivery-tours', deliveryTours);
+app.use('/v0/api', api);
+app.use('/v0/products', products);
+app.use('/v0/users', users);
+app.use('/v0/messages', messages);
+app.use('/v0/assignment-requests', assignmentRequests);
+app.use('/v0/orders', orders);
+app.use('/v0/delivery-tours', deliveryTours);
+//app.use('/v0/roles', roles);
 
 // Configuration de Swagger
 const swaggerOptions = {
@@ -57,14 +59,14 @@ const swaggerOptions = {
             },
         ],
     },
-    apis: ['./routes/*.js'], // Chemin vers les fichiers de route
+    apis: ['./src/routes/*.js'], // Chemin vers les fichiers de route
 };
 
 const swaggerDocs = swaggerJsdoc(swaggerOptions);
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/v0/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 const path = require('path');
-app.get('/socket', (req, res) => {
+app.get('/v0/socket', (req, res) => {
     res.sendFile(path.join(__dirname, 'socketIo.html'));
 });
 

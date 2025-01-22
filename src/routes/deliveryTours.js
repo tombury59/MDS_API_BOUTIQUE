@@ -1,52 +1,56 @@
 const express = require('express');
+
+const LivraisonController = require('../controllers/LivraisonController');
+
 const authenticateJWT = require('../middleware/authenticateJWT');
-const DemAffectationController = require("../controllers/DemAffectController");
 
 const router = express.Router();
 
 /**
  * @swagger
- * /assignment-requests:
+ * /v0/delivery-tours:
  *  get:
  *    tags:
- *      - Assignment Requests
- *    description: Use to request all assignment requests
- *    security:
- *      - bearerAuth: []
+ *      - Delivery Tours
+ *    description: Use to request all delivery tours
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.get('/', authenticateJWT, DemAffectationController.getDemandeAffects);
+router.get('/', authenticateJWT, LivraisonController.getLivraisons);
 
 /**
  * @swagger
- * /assignment-requests/{id}:
+ * /v0/delivery-tours/{id}:
  *  get:
  *    tags:
- *      - Assignment Requests
- *    description: Use to request assignment request by id
+ *      - Delivery Tours
+ *    description: Use to request delivery tour by id
  *    parameters:
  *      - name: id
  *        in: path
- *        description: ID of the assignment request
+ *        description: ID of the delivery tour
  *        required: true
  *        type: integer
- *    security:
- *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.get('/:id', authenticateJWT, DemAffectationController.getDemandeAffectById);
+router.get('/:id', authenticateJWT, LivraisonController.getLivraisonById);
 
 /**
  * @swagger
- * /assignment-requests:
+ * /v0/delivery-tours:
  *  post:
  *    tags:
- *      - Assignment Requests
- *    description: Use to create an assignment request
+ *      - Delivery Tours
+ *    description: Use to create a delivery tour
+ *    parameters:
+ *      - name: idLivraison
+ *        in: path
+ *        description: ID of the assignment request
+ *        required: true
+ *        type: integer
  *    requestBody:
  *      required: true
  *      content:
@@ -54,13 +58,15 @@ router.get('/:id', authenticateJWT, DemAffectationController.getDemandeAffectByI
  *          schema:
  *            type: object
  *            properties:
- *              statutDemande:
+ *              statutLivraison:
  *                type: string
- *              dateDemande:
+ *              datePrevu:
  *                type: string
- *              idResponsable:
+ *              dateLivraison:
  *                type: integer
- *              idUtilisateur:
+ *              IdLivreur:
+ *                type: integer
+ *              idCommande::
  *                type: integer
  *    security:
  *      - bearerAuth: []
@@ -68,15 +74,15 @@ router.get('/:id', authenticateJWT, DemAffectationController.getDemandeAffectByI
  *      '200':
  *        description: A successful response
  */
-router.post('/', authenticateJWT, DemAffectationController.createDemandeAffect);
+router.post('/', authenticateJWT, LivraisonController.createLivraison);
 
 /**
  * @swagger
- * /assignment-requests/{id}:
+ * /v0/delivery-tours/{id}:
  *  put:
  *    tags:
- *      - Assignment Requests
- *    description: Use to update an assignment request
+ *      - Delivery Tours
+ *    description: Use to update a delivery tour
  *    parameters:
  *      - name: id
  *        in: path
@@ -90,13 +96,15 @@ router.post('/', authenticateJWT, DemAffectationController.createDemandeAffect);
  *          schema:
  *            type: object
  *            properties:
- *              statutDemande:
+ *              statutLivraison:
  *                type: string
- *              dateDemande:
+ *              datePrevu:
  *                type: string
- *              idResponsable:
+ *              dateLivraison:
  *                type: integer
- *              idUtilisateur:
+ *              IdLivreur:
+ *                type: integer
+ *              idCommande::
  *                type: integer
  *    security:
  *      - bearerAuth: []
@@ -104,27 +112,25 @@ router.post('/', authenticateJWT, DemAffectationController.createDemandeAffect);
  *      '200':
  *        description: A successful response
  */
-router.put('/:id', authenticateJWT, DemAffectationController.updateDemandeAffect);
+router.put('/:id', authenticateJWT, LivraisonController.updateLivraison);
 
 /**
  * @swagger
- * /assignment-requests/{id}:
+ * /v0/delivery-tours/{id}:
  *  delete:
  *    tags:
- *      - Assignment Requests
- *    description: Use to delete an assignment request
+ *      - Delivery Tours
+ *    description: Use to delete a delivery tour
  *    parameters:
  *      - name: id
  *        in: path
- *        description: ID of the assignment request
+ *        description: ID of the delivery tour
  *        required: true
  *        type: integer
- *    security:
- *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.delete('/:id', authenticateJWT, DemAffectationController.deleteDemandeAffect);
+router.delete('/:id', authenticateJWT, LivraisonController.deleteLivraison);
 
 module.exports = router;

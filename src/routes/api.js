@@ -12,7 +12,7 @@ router.get('/typeUsers', authenticateJWT, TypeUtilisateurController.getTypeUtili
 
 /**
  * @swagger
- * /api/login:
+ * /v0/api/login:
  *  post:
  *    tags:
  *      - Utilisateur

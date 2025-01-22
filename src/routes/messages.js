@@ -8,7 +8,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /messages:
+ * /v0/messages:
  *  get:
  *    tags:
  *      - Messages
@@ -21,7 +21,7 @@ router.get('/', authenticateJWT, MessageController.getMessages);
 
 /**
  * @swagger
- * /messages/{id}:
+ * /v0/messages/{id}:
  *  get:
  *    tags:
  *      - Messages
@@ -40,17 +40,11 @@ router.get('/:id', authenticateJWT, MessageController.getMessageById);
 
 /**
  * @swagger
- * /messages:
+ * /v0/messages:
  *  post:
  *    tags:
  *      - Messages
  *    description: Use to create a message
- *    parameters:
- *      - name: id
- *        in: path
- *        description: ID of the assignment request
- *        required: true
- *        type: integer
  *    requestBody:
  *      required: true
  *      content:
@@ -80,7 +74,7 @@ router.post('/', authenticateJWT, MessageController.createMessage);
 
 /**
  * @swagger
- * /messages/{id}:
+ * /v0/messages/{id}:
  *  put:
  *    tags:
  *      - Messages
@@ -120,7 +114,7 @@ router.put('/:id', authenticateJWT, MessageController.updateMessage);
 
 /**
  * @swagger
- * /messages/{id}:
+ * /v0/messages/{id}:
  *  delete:
  *    tags:
  *      - Messages

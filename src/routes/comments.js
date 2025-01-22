@@ -8,7 +8,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /products/{productId}/comments:
+ * /v0/products/{productId}/comments:
  *  get:
  *    tags:
  *      - Comments
@@ -21,7 +21,7 @@ router.get('/:productId/comments', authenticateJWT, CommentaireController.getCom
 
 /**
  * @swagger
- * /products/{productId}/comments/{commentId}:
+ * /v0/products/{productId}/comments/{commentId}:
  *  get:
  *    tags:
  *      - Comments
@@ -45,7 +45,7 @@ router.get('/:productId/comments/:commentId', authenticateJWT, CommentaireContro
 
 /**
  * @swagger
- * /products/{productId}/comments:
+ * /v0/products/{productId}/comments:
  *  post:
  *    tags:
  *      - Comments
@@ -86,7 +86,7 @@ router.post('/:productId/comments', authenticateJWT, CommentaireController.creat
 
 /**
  * @swagger
- * /products/{productId}/comments/{commentId}:
+ * /v0/products/{productId}/comments/{commentId}:
  *  put:
  *    tags:
  *      - Comments
@@ -130,7 +130,7 @@ router.post('/:productId/comments', authenticateJWT, CommentaireController.creat
 router.put('/:productId/comments/:commentId', authenticateJWT, CommentaireController.updateCommentaire);
 /**
  * @swagger
- * /products/{productId}/comments/{commentId}:
+ * /v0/products/{productId}/comments/{commentId}:
  *  delete:
  *    tags:
  *      - Comments

@@ -11,7 +11,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /products:
+ * /v0/products:
  *  get:
  *    tags:
  *      - Products
@@ -24,7 +24,7 @@ router.get('/', authenticateJWT,ProduitController.getProduits);
 
 /**
  * @swagger
- * /products/{id}:
+ * /v0/products/{id}:
  *  get:
  *    tags:
  *      - Products
@@ -43,7 +43,7 @@ router.get('/:id', authenticateJWT, ProduitController.getProduitById);
 
 /**
  * @swagger
- * /products:
+ * /v0/products:
  *  post:
  *    tags:
  *      - Products
@@ -77,7 +77,7 @@ router.post('/', authenticateJWT, ProduitController.createProduit);
 
 /**
  * @swagger
- * /products/{id}:
+ * /v0/products/{id}:
  *  put:
  *    tags:
  *      - Products
@@ -118,7 +118,7 @@ router.put('/:id', authenticateJWT, ProduitController.updateProduit);
 
 /**
  * @swagger
- * /products/{id}:
+ * /v0/products/{id}:
  *  delete:
  *    tags:
  *      - Products
@@ -137,7 +137,7 @@ router.delete('/:id', authenticateJWT, ProduitController.deleteProduit);
 
 /**
  * @swagger
- * /products/{productId}/comments:
+ * /v0/products/{productId}/comments:
  *  get:
  *    tags:
  *      - Comments
@@ -156,7 +156,7 @@ router.get('/:productId/comments', authenticateJWT, CommentaireController.getCom
 
 /**
  * @swagger
- * /products/{productId}/comments/{commentId}:
+ * /v0/products/{productId}/comments/{commentId}:
  *  get:
  *    tags:
  *      - Comments
@@ -180,7 +180,7 @@ router.get('/:productId/comments/:commentId', authenticateJWT, CommentaireContro
 
 /**
  * @swagger
- * /products/{productId}/comments:
+ * /v0/products/{productId}/comments:
  *  post:
  *    tags:
  *      - Comments
@@ -189,12 +189,6 @@ router.get('/:productId/comments/:commentId', authenticateJWT, CommentaireContro
  *      - name: productId
  *        in: path
  *        description: ID of the product
- *        required: true
- *        schema:
- *          type: integer
- *      - name: commentId
- *        in: path
- *        description: ID of the comment
  *        required: true
  *        schema:
  *          type: integer
@@ -264,7 +258,7 @@ router.post('/:productId/comments', authenticateJWT, CommentaireController.creat
 
 /**
  * @swagger
- * /products/{productId}/comments/{commentId}:
+ * /v0/products/{productId}/comments/{commentId}:
  *  put:
  *    tags:
  *      - Comments
@@ -348,7 +342,7 @@ router.put('/:productId/comments/:commentId', authenticateJWT, CommentaireContro
 
 /**
  * @swagger
- * /products/{productId}/comments/{commentId}:
+ * /v0/products/{productId}/comments/{commentId}:
  *  delete:
  *    tags:
  *      - Comments

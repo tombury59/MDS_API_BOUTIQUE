@@ -1,56 +1,52 @@
 const express = require('express');
-
-const CommandeController = require('../controllers/CommandeController');
-
 const authenticateJWT = require('../middleware/authenticateJWT');
+const DemAffectationController = require("../controllers/DemAffectController");
 
 const router = express.Router();
 
 /**
  * @swagger
- * /orders:
+ * /v0/assignment-requests:
  *  get:
  *    tags:
- *      - Orders
- *    description: Use to request all orders
+ *      - Assignment Requests
+ *    description: Use to request all assignment requests
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.get('/', authenticateJWT, CommandeController.getCommandes);
+router.get('/', authenticateJWT, DemAffectationController.getDemandeAffects);
 
 /**
  * @swagger
- * /orders/{id}:
+ * /v0/assignment-requests/{id}:
  *  get:
  *    tags:
- *      - Orders
- *    description: Use to request order by id
+ *      - Assignment Requests
+ *    description: Use to request assignment request by id
  *    parameters:
  *      - name: id
  *        in: path
- *        description: ID of the order
+ *        description: ID of the assignment request
  *        required: true
  *        type: integer
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.get('/:id', authenticateJWT, CommandeController.getCommandeById);
+router.get('/:id', authenticateJWT, DemAffectationController.getDemandeAffectById);
 
 /**
  * @swagger
- * /orders:
+ * /v0/assignment-requests:
  *  post:
  *    tags:
- *      - Orders
- *    description: Use to create an order
- *    parameters:
- *      - name: id
- *        in: path
- *        description: ID of the assignment request
- *        required: true
- *        type: integer
+ *      - Assignment Requests
+ *    description: Use to create an assignment request
  *    requestBody:
  *      required: true
  *      content:
@@ -58,14 +54,12 @@ router.get('/:id', authenticateJWT, CommandeController.getCommandeById);
  *          schema:
  *            type: object
  *            properties:
- *              montantTotalHT:
- *                type: integer
- *              montantTotalTTC:
- *                type: integer
- *              statut:
+ *              statutDemande:
  *                type: string
- *              dateCommande:
+ *              dateDemande:
  *                type: string
+ *              idResponsable:
+ *                type: integer
  *              idUtilisateur:
  *                type: integer
  *    security:
@@ -74,15 +68,15 @@ router.get('/:id', authenticateJWT, CommandeController.getCommandeById);
  *      '200':
  *        description: A successful response
  */
-router.post('/', authenticateJWT, CommandeController.createCommande);
+router.post('/', authenticateJWT, DemAffectationController.createDemandeAffect);
 
 /**
  * @swagger
- * /orders/{id}:
+ * /v0/assignment-requests/{id}:
  *  put:
  *    tags:
- *      - Orders
- *    description: Use to update an order
+ *      - Assignment Requests
+ *    description: Use to update an assignment request
  *    parameters:
  *      - name: id
  *        in: path
@@ -96,14 +90,12 @@ router.post('/', authenticateJWT, CommandeController.createCommande);
  *          schema:
  *            type: object
  *            properties:
- *              montantTotalHT:
- *                type: integer
- *              montantTotalTTC:
- *                type: integer
- *              statut:
+ *              statutDemande:
  *                type: string
- *              dateCommande:
+ *              dateDemande:
  *                type: string
+ *              idResponsable:
+ *                type: integer
  *              idUtilisateur:
  *                type: integer
  *    security:
@@ -112,25 +104,27 @@ router.post('/', authenticateJWT, CommandeController.createCommande);
  *      '200':
  *        description: A successful response
  */
-router.put('/:id', authenticateJWT, CommandeController.updateCommande);
+router.put('/:id', authenticateJWT, DemAffectationController.updateDemandeAffect);
 
 /**
  * @swagger
- * /orders/{id}:
+ * /v0/assignment-requests/{id}:
  *  delete:
  *    tags:
- *      - Orders
- *    description: Use to delete an order
+ *      - Assignment Requests
+ *    description: Use to delete an assignment request
  *    parameters:
  *      - name: id
  *        in: path
- *        description: ID of the order
+ *        description: ID of the assignment request
  *        required: true
  *        type: integer
+ *    security:
+ *      - bearerAuth: []
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.delete('/:id', authenticateJWT, CommandeController.deleteCommande);
+router.delete('/:id', authenticateJWT, DemAffectationController.deleteDemandeAffect);
 
 module.exports = router;

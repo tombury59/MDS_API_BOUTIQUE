@@ -9,7 +9,7 @@ const router = express.Router();
 
 /**
  * @swagger
- * /users:
+ * /v0/users:
  *  get:
  *    tags:
  *      - Users
@@ -22,7 +22,7 @@ router.get('/', authenticateJWT, UtilisateurController.getUsers);
 
 /**
  * @swagger
- * /users/{id}:
+ * /v0/users/{id}:
  *  get:
  *    tags:
  *      - Users
@@ -41,7 +41,7 @@ router.get('/:id', authenticateJWT, UtilisateurController.getUserById);
 
 /**
  * @swagger
- * /users/role/{id}:
+ * /v0/users/role/{id}:
  *  get:
  *    tags:
  *      - Users
@@ -60,7 +60,7 @@ router.get('/role/:id', authenticateJWT, UtilisateurController.getUserByType);
 
 /**
  * @swagger
- * /users:
+ * /v0/users:
  *  post:
  *    tags:
  *      - Users
@@ -110,7 +110,7 @@ router.post('', authenticateJWT, UtilisateurController.createUser);
 
 /**
  * @swagger
- * /users/{id}:
+ * /v0/users/{id}:
  *  put:
  *    tags:
  *      - Users
@@ -156,7 +156,7 @@ router.put('/:id', authenticateJWT, UtilisateurController.updateUser);
 
 /**
  * @swagger
- * /users/{id}:
+ * /v0/users/{id}:
  *  delete:
  *    tags:
  *      - Users

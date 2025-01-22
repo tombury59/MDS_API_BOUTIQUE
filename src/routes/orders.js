@@ -1,6 +1,6 @@
 const express = require('express');
 
-const LivraisonController = require('../controllers/LivraisonController');
+const CommandeController = require('../controllers/CommandeController');
 
 const authenticateJWT = require('../middleware/authenticateJWT');
 
@@ -8,49 +8,43 @@ const router = express.Router();
 
 /**
  * @swagger
- * /delivery-tours:
+ * /v0/orders:
  *  get:
  *    tags:
- *      - Delivery Tours
- *    description: Use to request all delivery tours
+ *      - Orders
+ *    description: Use to request all orders
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.get('/', authenticateJWT, LivraisonController.getLivraisons);
+router.get('/', authenticateJWT, CommandeController.getCommandes);
 
 /**
  * @swagger
- * /delivery-tours/{id}:
+ * /v0/orders/{id}:
  *  get:
  *    tags:
- *      - Delivery Tours
- *    description: Use to request delivery tour by id
+ *      - Orders
+ *    description: Use to request order by id
  *    parameters:
  *      - name: id
  *        in: path
- *        description: ID of the delivery tour
+ *        description: ID of the order
  *        required: true
  *        type: integer
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.get('/:id', authenticateJWT, LivraisonController.getLivraisonById);
+router.get('/:id', authenticateJWT, CommandeController.getCommandeById);
 
 /**
  * @swagger
- * /delivery-tours:
+ * /v0/orders:
  *  post:
  *    tags:
- *      - Delivery Tours
- *    description: Use to create a delivery tour
- *    parameters:
- *      - name: id
- *        in: path
- *        description: ID of the assignment request
- *        required: true
- *        type: integer
+ *      - Orders
+ *    description: Use to create an order
  *    requestBody:
  *      required: true
  *      content:
@@ -58,15 +52,15 @@ router.get('/:id', authenticateJWT, LivraisonController.getLivraisonById);
  *          schema:
  *            type: object
  *            properties:
- *              statutLivraison:
- *                type: string
- *              datePrevu:
- *                type: string
- *              dateLivraison:
+ *              montantTotalHT:
  *                type: integer
- *              IdLivreur:
+ *              montantTotalTTC:
  *                type: integer
- *              idCommande::
+ *              statut:
+ *                type: string
+ *              dateCommande:
+ *                type: string
+ *              idUtilisateur:
  *                type: integer
  *    security:
  *      - bearerAuth: []
@@ -74,15 +68,15 @@ router.get('/:id', authenticateJWT, LivraisonController.getLivraisonById);
  *      '200':
  *        description: A successful response
  */
-router.post('/', authenticateJWT, LivraisonController.createLivraison);
+router.post('/', authenticateJWT, CommandeController.createCommande);
 
 /**
  * @swagger
- * /delivery-tours/{id}:
+ * /v0/orders/{id}:
  *  put:
  *    tags:
- *      - Delivery Tours
- *    description: Use to update a delivery tour
+ *      - Orders
+ *    description: Use to update an order
  *    parameters:
  *      - name: id
  *        in: path
@@ -96,15 +90,15 @@ router.post('/', authenticateJWT, LivraisonController.createLivraison);
  *          schema:
  *            type: object
  *            properties:
- *              statutLivraison:
- *                type: string
- *              datePrevu:
- *                type: string
- *              dateLivraison:
+ *              montantTotalHT:
  *                type: integer
- *              IdLivreur:
+ *              montantTotalTTC:
  *                type: integer
- *              idCommande::
+ *              statut:
+ *                type: string
+ *              dateCommande:
+ *                type: string
+ *              idUtilisateur:
  *                type: integer
  *    security:
  *      - bearerAuth: []
@@ -112,25 +106,25 @@ router.post('/', authenticateJWT, LivraisonController.createLivraison);
  *      '200':
  *        description: A successful response
  */
-router.put('/:id', authenticateJWT, LivraisonController.updateLivraison);
+router.put('/:id', authenticateJWT, CommandeController.updateCommande);
 
 /**
  * @swagger
- * /delivery-tours/{id}:
+ * /v0/orders/{id}:
  *  delete:
  *    tags:
- *      - Delivery Tours
- *    description: Use to delete a delivery tour
+ *      - Orders
+ *    description: Use to delete an order
  *    parameters:
  *      - name: id
  *        in: path
- *        description: ID of the delivery tour
+ *        description: ID of the order
  *        required: true
  *        type: integer
  *    responses:
  *      '200':
  *        description: A successful response
  */
-router.delete('/:id', authenticateJWT, LivraisonController.deleteLivraison);
+router.delete('/:id', authenticateJWT, CommandeController.deleteCommande);
 
 module.exports = router;
