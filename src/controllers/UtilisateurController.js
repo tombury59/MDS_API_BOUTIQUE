@@ -31,6 +31,9 @@ const getUsers = async (req, res) => {
 const getUserById = async (req, res) => {
     try {
         const user = await Utilisateur.findByPk(req.params.id);
+        if (user === null) {
+            res.status(404).send({ message: 'User not found' });
+        }
         res.json(user);
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -41,6 +44,9 @@ const getUserByType = async (req, res) => {
     try {
         const user = await Utilisateur.findAll({ where: { idType: req.params.id } });
         //const user = await Utilisateur.findAll({ where: { idType: 1 } });
+        if (user.length === 0) {
+            res.status(404).send({ message: 'User not found' });
+        }
         res.json(user);
     } catch (error) {
         res.status(500).send({ message: error.message });

@@ -19,15 +19,16 @@ const router = express.Router();
  */
 router.get('/', authenticateJWT, TypeUtilisateurController.getTypeUtilisateur);
 
+
 /**
  * @swagger
- * /v0/roles/{id}:
+ * /v0/roles/{idType}:
  *  get:
  *    tags:
  *      - Roles
  *    description: Use to request role by id
  *    parameters:
- *      - name: id
+ *      - name: idType
  *        in: path
  *        description: ID of the role
  *        required: true
@@ -36,7 +37,7 @@ router.get('/', authenticateJWT, TypeUtilisateurController.getTypeUtilisateur);
  *      '200':
  *        description: A successful response
  */
-router.get('/role/:id', authenticateJWT, TypeUtilisateurController.getTypeUtilisateurById);
+router.get('/:id', authenticateJWT, TypeUtilisateurController.getTypeUtilisateurById);
 
 /**
  * @swagger
@@ -52,7 +53,13 @@ router.get('/role/:id', authenticateJWT, TypeUtilisateurController.getTypeUtilis
  *          schema:
  *            type: object
  *            properties:
+ *              nomType:
+ *                type: string
+ *    responses:
+ *      '201':
+ *        description: Role created successfully
  */
+
 router.post('/', authenticateJWT, TypeUtilisateurController.createTypeUtilisateur);
 
 /**
@@ -75,6 +82,11 @@ router.post('/', authenticateJWT, TypeUtilisateurController.createTypeUtilisateu
  *          schema:
  *            type: object
  *            properties:
+ *              nomType:
+ *                type: string
+ *    responses:
+ *      '200':
+ *        description: Role updated successfully
  */
 router.put('/:id', authenticateJWT, TypeUtilisateurController.updateTypeUtilisateur);
 
@@ -97,3 +109,4 @@ router.put('/:id', authenticateJWT, TypeUtilisateurController.updateTypeUtilisat
  */
 router.delete('/:id', authenticateJWT, TypeUtilisateurController.deleteTypeUtilisateur);
 
+module.exports = router;

@@ -4,6 +4,9 @@ const Ballon = require('../models/BALLON');
 const getProduits = async (req, res) => {
     try {
         const produits = await Produit.findAll();
+        if(produits.length === 0) {
+            res.status(404).send({ message: 'Products not found' });
+        }
         res.json(produits);
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -13,6 +16,9 @@ const getProduits = async (req, res) => {
 const getProduitById = async (req, res) => {
     try {
         const produit = await Produit.findByPk(req.params.id);
+        if(produit === null){
+            res.status(404).send({ message: 'Product not found' });
+        }
         res.json(produit);
     } catch (error) {
         res.status(500).send({ message: error.message });

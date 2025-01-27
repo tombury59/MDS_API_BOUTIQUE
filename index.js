@@ -11,7 +11,7 @@ const messages = require('./src/routes/messages');
 const assignmentRequests = require('./src/routes/assignmentRequests');
 const orders = require('./src/routes/orders');
 const deliveryTours = require('./src/routes/deliveryTours');
-//const roles = require('./src/routes/userRoles');
+const roles = require('./src/routes/userRoles');
 
 const sequelize = require('./src/models/connectionBDD');
 const authenticateJWT = require('./src/middleware/authenticateJWT');
@@ -28,7 +28,7 @@ app.use('/v0/messages', messages);
 app.use('/v0/assignment-requests', assignmentRequests);
 app.use('/v0/orders', orders);
 app.use('/v0/delivery-tours', deliveryTours);
-//app.use('/v0/roles', roles);
+app.use('/v0/roles', roles);
 
 // Configuration de Swagger
 const swaggerOptions = {

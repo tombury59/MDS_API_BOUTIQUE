@@ -5,6 +5,9 @@ const secretKey = 'test';
 const getLivraisons = async (req, res) => {
     try {
         const livraison = await Livraison.findAll();
+        if (livraison.length === 0) {
+            res.status(404).send({ message: 'Deliveries not found' });
+        }
         res.json(livraison);
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -14,6 +17,9 @@ const getLivraisons = async (req, res) => {
 const getLivraisonById = async (req, res) => {
     try {
         const livraison = await Livraison.findByPk(req.params.id);
+        if (livraison === null) {
+            res.status(404).send({ message: 'Delivery not found' });
+        }
         res.json(livraison);
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -36,7 +42,7 @@ const updateLivraison = async (req, res) => {
             livraison.update(req.body);
             res.json(livraison);
         } else {
-            res.status(404).send({ message: 'Livraison non trouvé' });
+            res.status(404).send({ message: 'Delivery not found' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -48,9 +54,9 @@ const deleteLivraison = async (req, res) => {
         const livraison = await Livraison.findByPk(req.params.id);
         if (livraison) {
             livraison.destroy();
-            res.json({ message: 'Livraison supprimé' });
+            res.json({ message: 'Delivery deleted' });
         } else {
-            res.status(404).send({ message: 'Livraison non trouvé' });
+            res.status(404).send({ message: 'Delivery not found' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });

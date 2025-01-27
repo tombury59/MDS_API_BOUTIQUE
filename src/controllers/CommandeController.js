@@ -5,6 +5,9 @@ const secretKey = 'test';
 const getCommandes = async (req, res) => {
     try {
         const commandes = await Commande.findAll();
+        if (commandes.length === 0) {
+            res.status(404).send({ message: 'Orders not found' });
+        }
         res.json(commandes);
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -14,6 +17,9 @@ const getCommandes = async (req, res) => {
 const getCommandeById = async (req, res) => {
     try {
         const commande = await Commande.findByPk(req.params.id);
+        if (commande === null) {
+            res.status(404).send({ message: 'Order not found' });
+        }
         res.json(commande);
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -36,7 +42,7 @@ const updateCommande = async (req, res) => {
             commande.update(req.body);
             res.json(commande);
         } else {
-            res.status(404).send({ message: 'Commande non trouvé' });
+            res.status(404).send({ message: 'Order not found' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -48,9 +54,9 @@ const deleteCommande = async (req, res) => {
         const commande = await Commande.findByPk(req.params.id);
         if (commande) {
             commande.destroy();
-            res.json({ message: 'Commande supprimé' });
+            res.json({ message: 'Order deleted' });
         } else {
-            res.status(404).send({ message: 'Commande non trouvé' });
+            res.status(404).send({ message: 'Order not found' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });

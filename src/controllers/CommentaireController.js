@@ -6,6 +6,9 @@ const getCommentaires = async (req, res) => {
     try {
         const { productId } = req.params; // Récupération de l'idProduit depuis les paramètres
         const commentaires = await Commentaire.findAll({ where: { idProduit: productId } }); // Filtrer par idProduit
+        if (commentaires.length === 0) {
+            res.status(404).send({ message: 'Comments not found' });
+        }
         res.json(commentaires);
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -14,14 +17,14 @@ const getCommentaires = async (req, res) => {
 
 const getCommentaireById = async (req, res) => {
     try {
-        const { productId, commentId } = req.params; // Récupérer idProduit et idCommentaire depuis les paramètres
+        const { productId, commentId } = req.params;
         const commentaire = await Commentaire.findOne({
-            where: { idCommentaire: commentId, idProduit: productId } // Vérifier les deux conditions
+            where: { idCommentaire: commentId, idProduit: productId }
         });
         if (commentaire) {
             res.json(commentaire);
         } else {
-            res.status(404).send({ message: 'Commentaire non trouvé' });
+            res.status(404).send({ message: 'Comment not found' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -48,7 +51,7 @@ const updateCommentaire = async (req, res) => {
             await commentaire.update(req.body);
             res.json(commentaire);
         } else {
-            res.status(404).send({ message: 'Commentaire non trouvé' });
+            res.status(404).send({ message: 'Comment not found' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });
@@ -63,9 +66,9 @@ const deleteCommentaire = async (req, res) => {
         });
         if (commentaire) {
             await commentaire.destroy();
-            res.json({ message: 'Commentaire supprimé' });
+            res.json({ message: 'Comment deleted' });
         } else {
-            res.status(404).send({ message: 'Commentaire non trouvé' });
+            res.status(404).send({ message: 'Comment not found' });
         }
     } catch (error) {
         res.status(500).send({ message: error.message });
